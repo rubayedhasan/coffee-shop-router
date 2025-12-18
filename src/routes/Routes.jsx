@@ -1,14 +1,29 @@
 import { createBrowserRouter } from "react-router";
-import App from "../App";
+import MainLayout from "../mainLayouts/MainLayout";
+import NotFound from "../pages/NotFound";
+import Home from "../pages/Home";
+import Coffees from "../pages/Coffees";
+import Dashboard from "../pages/Dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/home",
-    element: <div>Home</div>,
+    element: <MainLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/coffees",
+        element: <Coffees />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);
 

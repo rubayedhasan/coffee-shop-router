@@ -11,5 +11,10 @@
 
 /* common styles  */
 body {
+  color: #222222;
   font-family: "Montserrat", sans-serif;
+}
+
+.cf-text-primary {
+  color: #ff6d1f;
 }
