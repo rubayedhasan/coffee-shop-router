@@ -1,9 +1,10 @@
 import Banner from "../components/Banner";
+import CategoryTab from "../components/CategoryTab";
 import Heading from "../components/Heading";
 
 const Home = () => {
   return (
-    <div>
+    <>
       {/* banner section component:: Banner  */}
       <Banner />
 
@@ -13,9 +14,11 @@ const Home = () => {
         subtitle="Choose your desired coffee category to browse through specific coffees that fit in your taste"
       />
 
-      {/* dynamic selection tab  */}
+      {/* dynamic category tab component:: CategoryTab */}
+      <CategoryTab />
+
       {/* dynamic cards base on the selection tab  */}
-    </div>
+    </>
   );
 };
 
