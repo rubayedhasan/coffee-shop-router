@@ -1,7 +1,16 @@
+import Banner from "../components/Banner";
+import Heading from "../components/Heading";
+
 const Home = () => {
   return (
     <div>
-      <p>Home Page</p>
+      {/* banner section component:: Banner  */}
+      <Banner />
+
+      {/* heading section component:: Heading */}
+      <Heading />
+      {/* dynamic selection tab  */}
+      {/* dynamic cards base on the selection tab  */}
     </div>
   );
 };

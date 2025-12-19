@@ -9,6 +9,10 @@
   themes: light --default, dark --prefersdark, cupcake;
 }
 
+@utility bg-hero-banner {
+  background-image: url("./assets/images/banner.jpg");
+}
+
 /* common styles  */
 body {
   color: #222222;
