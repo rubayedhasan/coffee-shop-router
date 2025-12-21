@@ -1,8 +1,22 @@
 import { useLoaderData } from "react-router";
 import Coffee from "../components/Coffee";
+import { useState } from "react";
 
 const Coffees = () => {
   const allCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(allCoffees);
+
+  const handleSortByPopularity = () => {
+    const sortByPopularity = [...allCoffees].sort(
+      (a, b) => b?.popularity - a?.popularity
+    );
+    setCoffees(sortByPopularity);
+  };
+
+  const handleSortByRating = () => {
+    const sortByRating = [...allCoffees].sort((a, b) => b?.rating - a?.rating);
+    setCoffees(sortByRating);
+  };
 
   return (
     <>
@@ -16,6 +30,7 @@ const Coffees = () => {
         {/* sort buttons container   */}
         <div className="flex justify-between md:gap-5">
           <button
+            onClick={handleSortByPopularity}
             className="btn bg-[#FF6D1F] text-sm text-[#F5E7C6]"
             type="button"
           >
@@ -23,6 +38,7 @@ const Coffees = () => {
           </button>
 
           <button
+            onClick={handleSortByRating}
             className="btn bg-[#FF6D1F] text-sm md:text-base text-[#F5E7C6]"
             type="button"
           >
@@ -33,7 +49,7 @@ const Coffees = () => {
 
       {/* dynamic cards  */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center mt-10">
-        {allCoffees.map((coffee) => (
+        {coffees.map((coffee) => (
           <Coffee key={coffee.id} coffee={coffee}></Coffee>
         ))}
       </div>

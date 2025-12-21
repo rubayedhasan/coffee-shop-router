@@ -16,8 +16,6 @@ const CollectionOfCoffees = () => {
     coffees = allCoffees.slice(0, 6);
   }
 
-  console.log(categoryName);
-  console.log(allCoffees);
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center mt-10">
