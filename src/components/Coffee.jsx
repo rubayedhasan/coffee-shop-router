@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router";
 
 const Coffee = ({ coffee }) => {
-  const { name, image, category, origin, rating, popularity } = coffee;
+  const navigate = useNavigate();
+  const { id, name, image, category, origin, rating, popularity } =
+    coffee || {};
   return (
-    <div className="p-6 border border-[#1212120f] shadow rounded-md flex flex-col gap-6 w-full">
+    <div
+      onClick={() => navigate(`/coffee/${id}`)}
+      className="p-6 border border-[#1212120f] shadow rounded-md flex flex-col gap-6 w-full cursor-pointer"
+    >
       <figure className="h-42 lg:h-56 w-full">
         <img
           src={image}
