@@ -2,7 +2,6 @@ import { NavLink, useLoaderData } from "react-router";
 
 const CategoryTab = () => {
   const coffeeCategory = useLoaderData();
-  console.log(coffeeCategory);
 
   return (
     <div className="mt-10 lg:mt-12 flex justify-center">

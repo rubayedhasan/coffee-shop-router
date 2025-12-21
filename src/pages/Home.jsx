@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import Banner from "../components/Banner";
 import CategoryTab from "../components/CategoryTab";
 import Heading from "../components/Heading";
@@ -18,6 +19,7 @@ const Home = () => {
       <CategoryTab />
 
       {/* dynamic cards base on the selection tab  */}
+      <Outlet />
     </>
   );
 };
