@@ -33,4 +33,4 @@ const storeTheFavorite = (listArr) => {
   const stringifyList = JSON.stringify(listArr);
   window.localStorage.setItem("favoriteList", stringifyList);
 };
-export { addFavorite };
+export { getTheFavorite, addFavorite };
