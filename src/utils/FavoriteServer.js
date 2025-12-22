@@ -33,4 +33,13 @@ const storeTheFavorite = (listArr) => {
   const stringifyList = JSON.stringify(listArr);
   window.localStorage.setItem("favoriteList", stringifyList);
 };
-export { getTheFavorite, addFavorite };
+
+// remove the favorite from local
+const removeTheFavorite = (coffeeId) => {
+  console.log(coffeeId);
+  const favorites = getTheFavorite();
+
+  const remainingFavorites = favorites.filter((c) => c?.id !== coffeeId);
+  storeTheFavorite(remainingFavorites);
+};
+export { getTheFavorite, addFavorite, removeTheFavorite };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Coffee from "../components/Coffee";
 import Heading from "../components/Heading";
-import { getTheFavorite } from "../utils/FavoriteServer";
+import { getTheFavorite, removeTheFavorite } from "../utils/FavoriteServer";
 
 const Dashboard = () => {
   const [coffees, setCoffees] = useState(() => getTheFavorite() || []);
@@ -18,6 +18,11 @@ const Dashboard = () => {
     };
   }, []);
 
+  const handleRemoveTheFavorite = (id) => {
+    removeTheFavorite(id);
+    setCoffees(() => getTheFavorite() || []);
+  };
+
   return (
     <div>
       {/* heading component  */}
@@ -31,7 +36,11 @@ const Dashboard = () => {
       {/* dynamic cards:: add  favorite coffees */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center mt-10">
         {coffees.map((coffee) => (
-          <Coffee key={coffee?.id} coffee={coffee}></Coffee>
+          <Coffee
+            key={coffee?.id}
+            coffee={coffee}
+            handleRemoveTheFavorite={handleRemoveTheFavorite}
+          ></Coffee>
         ))}
       </div>
     </div>

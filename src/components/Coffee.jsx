@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router";
 import { TbTrashXFilled } from "react-icons/tb";
 
-const Coffee = ({ coffee }) => {
+const Coffee = ({ coffee, handleRemoveTheFavorite }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   console.log(pathname);
@@ -37,8 +37,9 @@ const Coffee = ({ coffee }) => {
       {pathname === "/dashboard" && (
         <div className="absolute  -top-4 -right-3 ">
           <button
+            onClick={() => handleRemoveTheFavorite(id)}
             type="button"
-            className="p-2.5 bg-[#FF6D1F] text-[#F5E7C6] rounded-full"
+            className="p-2.5 bg-[#FF6D1F] text-[#F5E7C6] rounded-full cursor-pointer"
           >
             <TbTrashXFilled size={18} />
           </button>
@@ -51,6 +52,7 @@ const Coffee = ({ coffee }) => {
 // define the propTypes
 Coffee.propTypes = {
   coffee: PropTypes.object.isRequired,
+  handleRemoveTheFavorite: PropTypes.func,
 };
 
 export default Coffee;
