@@ -2,8 +2,8 @@ import { useLoaderData, useParams } from "react-router";
 import NutritionImg from "../assets/images/nutrition.png";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
-import { useState } from "react";
-import { addFavorite } from "../utils/FavoriteServer";
+import { useEffect, useState } from "react";
+import { getTheFavorite, addFavorite } from "../utils/FavoriteServer";
 
 const CoffeeDetails = () => {
   const allCoffees = useLoaderData();
@@ -13,6 +13,17 @@ const CoffeeDetails = () => {
   const singleCoffee = allCoffees.find(
     (coffee) => coffee?.id === parseInt(coffeeId)
   );
+
+  useEffect(() => {
+    const handleMakeFavorite = () => {
+      setFavorite(true);
+    };
+
+    const favorites = getTheFavorite() || [];
+    const exist = favorites.find((c) => c?.id === singleCoffee?.id);
+    exist && handleMakeFavorite();
+  }, [singleCoffee]);
+
   const {
     name,
     image,
@@ -27,7 +38,7 @@ const CoffeeDetails = () => {
   } = singleCoffee || {};
 
   const handleFavorite = () => {
-    setFavorite(!favorite);
+    setFavorite(true);
     addFavorite(singleCoffee);
   };
   return (
@@ -47,8 +58,9 @@ const CoffeeDetails = () => {
         <h4 className="text-xl lg:text-3xl font-bold">{name}</h4>
         <div>
           <button
+            disabled={favorite}
             onClick={handleFavorite}
-            className="btn bg-[#FF6D1F] text-[#F5E7C6]"
+            className="btn bg-[#FF6D1F] text-[#F5E7C6] disabled:bg-[#FF6D1F]/50 disabled:text-gray-400 disabled:cursor-not-allowed"
             type="button"
           >
             <span>{favorite ? <FaHeart /> : <FaRegHeart />}</span>
