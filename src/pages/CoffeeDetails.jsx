@@ -1,9 +1,13 @@
 import { useLoaderData, useParams } from "react-router";
 import NutritionImg from "../assets/images/nutrition.png";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+import { useState } from "react";
 
 const CoffeeDetails = () => {
   const allCoffees = useLoaderData();
   const { coffeeId } = useParams();
+  const [favorite, setFavorite] = useState(false);
 
   const singleCoffee = allCoffees.find(
     (coffee) => coffee?.id === parseInt(coffeeId)
@@ -20,6 +24,10 @@ const CoffeeDetails = () => {
     making_process,
     description,
   } = singleCoffee || {};
+
+  const handleFavorite = () => {
+    setFavorite(!favorite);
+  };
   return (
     <div>
       <p className="text-base md:text-lg lg:text-xl font-light">
@@ -36,8 +44,13 @@ const CoffeeDetails = () => {
       <div className="flex justify-between mt-8">
         <h4 className="text-xl lg:text-3xl font-bold">{name}</h4>
         <div>
-          <button className="btn bg-[#FF6D1F] text-[#F5E7C6]" type="button">
-            Mark Favorite
+          <button
+            onClick={handleFavorite}
+            className="btn bg-[#FF6D1F] text-[#F5E7C6]"
+            type="button"
+          >
+            <span>{favorite ? <FaHeart /> : <FaRegHeart />}</span>
+            <span>Favorite</span>
           </button>
         </div>
       </div>
