@@ -3,6 +3,7 @@ import NutritionImg from "../assets/images/nutrition.png";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { useState } from "react";
+import { addFavorite } from "../utils/FavoriteServer";
 
 const CoffeeDetails = () => {
   const allCoffees = useLoaderData();
@@ -27,6 +28,7 @@ const CoffeeDetails = () => {
 
   const handleFavorite = () => {
     setFavorite(!favorite);
+    addFavorite(singleCoffee);
   };
   return (
     <div>
